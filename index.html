@@ -30,6 +30,7 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 	
 <head> 
 	<title>Hello World</title>  
+	<meta charset="UTF-8">
 ]	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<link rel="stylesheet" href="w3.css">
@@ -38,7 +39,33 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 
 <script>
 
-	//YOUR JAVASCRIPT GOES HERE
+	var poison_count = 0;
+        var bug_count = 0;
+
+	//poisonAdd: accumulates poison counter and triggers result page
+	//Called by YES buttons on poison related questions
+        function poisonAdd(){
+            poison_count = poison_count + 1;
+
+        }
+	//bugAdd: accumulates bug counter and triggers result page
+	//Called by YES buttons on bug related questions
+        function bugAdd(){
+            bug_count = bug_count + 1;
+        }
+
+		function calculateResults() {
+    // We now divide by 6 because there are 6 total questions
+   		 var poisonPercent = (poison_count / 6) * 100;
+   		 var bugPercent = (bug_count / 6) * 100;
+    
+    // Connect to the 'results' paragraph in the HTML
+		var resultText = document.getElementById("results");
+    
+    // Update the results page with the new math
+    resultText.innerHTML = "Probability it is food poison = " + poisonPercent.toFixed(0) + "%" + 
+                           "<br> Probability it is a stomach bug = " + bugPercent.toFixed(0) + "%";
+}
 
 </script>	
 
@@ -67,9 +94,150 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 </style>
 
 <body>
+	<!--Begining of Get Started page-->
+<div id="header" class="w3-container w3-flat-carrot">
+	<h1>Stomach Trouble: Poisoning or Bug?</h1>	<!--Header title of page-->
+</div> <!--/content-->
 	
-	<!-- HERE IS WHERE ALL OF YOUR HTML PAGES GO -->
-	REPLACE THIS TEXT
+<div id="content" class="w3-container">
+	<p>This app helps you distinguish between foodborne illness and a viral bug.</p>	<!-- Get Started page information-->
+
+	<img src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Stomach_icon.png" alt="Stomach Illustration">
+	
+	<a href="#one" class="w3-btn w3-grey w3-round"> Get Started </a>	<!--Get Started button-->
+	
+	<p>The following code has been developed by students and/or researchers of the Freshman Research Initiative DIY Diagnostics Stream at The University of Texas at 		Austin.  This code is shared for demonstration purposes and should not be considered a product -- it is for entertainment purposes only. Any user of this code 			does so at their own risk. Members of the DIY Stream, FRI, and The University of Texas system are not liable for anything related to this code.</p>	<!-- Get Started page information-->
+ 	
+	<p>THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.</p>	<!-- Get Started page information-->
+	
+	<footer class="w3-bottom w3-container w3-flat-carrot">	<!-- added footer block on Get Started page-->
+        <p>DIY!</p>
+	</footer>
+</div> <!-- /content -->
+									<!-- added footer block on Get Started page-->
+	
+									<!--Begining of page one-->
+<div class="page" id="one">
+	<div id="header" class="w3-container w3-flat-carrot">
+		<h1>Question 1</h1> <!--page one header-->
+	</div>
+	
+    	<div id="content" class="w3-container">
+        <p>Did your symptoms start very suddenly (within 2-6 hours of eating)?</p>    <!--added question 1-->
+        <a href="#two" onclick="poisonAdd();" class="w3-btn w3-black"> YES </a>    <!--added YES button and food poisoning function-->
+        <a href="#two" onclick="bugAdd();" class="w3-btn w3-black"> NO </a>   <!--added NO button and stomach bug function-->
+	
+	<footer class="w3-bottom w3-container w3-flat-carrot">	<!-- added footer block on page one-->
+        <p>DIY!</p>
+	</footer>
+</div><!-- /content -->
+									<!-- End of question page one-->
+	
+									<!-- Begining of question page two-->
+	
+<div class="page" id="two">
+	<div class="w3-container w3-flat-carrot">
+		<h1>Question 2</h1>	<!--page two header-->
+	</div>
+	
+	<div id="content" class="w3-container">
+		<p>Do you have a fever?</p>	<!--added question 2-->
+		<a href="#three" onclick="bugAdd();" class="w3-btn w3-black"> YES </a>    <!--added YES button and stomach bug function-->
+        <a href="#three" onclick="poisonAdd();" class="w3-btn w3-black"> NO </a>   <!--added NO button and food poisoning function-->
+	<footer class="w3-bottom w3-container w3-flat-carrot">	<!-- added footer block on page two-->
+        <p>DIY!</p>
+	</footer>	
+</div>	<!-- /content -->
+									<!-- End of question page two-->
+
+									<!-- Begining of question page three-->
+	
+<div class="page" id="three">
+	<div class="w3-container w3-flat-carrot">
+		<h1>Question 3</h1>	<!--page three header-->
+	</div>
+	
+	<div id="content" class="w3-container">
+		<p>Are your muscles aching?</p>	<!--added question 3-->
+		<a href="#four" onclick="bugAdd();" class="w3-btn w3-black"> YES </a>    <!--added YES button and stomach bug function-->
+        <a href="#four" onclick="poisonAdd();" class="w3-btn w3-black"> NO </a>   <!--added NO button and food poisoning function-->
+	<footer class="w3-bottom w3-container w3-flat-carrot">	<!-- added footer block on page three-->
+        <p>DIY!</p>
+	</footer>
+</div> <!-- /content -->
+									<!-- End of question page three-->
+
+									<!-- Begining of question page four-->
+<div class="page" id="four">
+	<div class="w3-container w3-flat-carrot">
+		<h1>Question 4</h1>	<!--page four header-->
+	</div>
+	
+	<div id="content" class="w3-container">
+		<p>Did symptoms resolve withing 24 hours?</p>	<!--added question 4-->
+		<a href="#five" onclick="poisonAdd();" class="w3-btn w3-black"> YES </a>    <!--added YES button and food poisoning function-->
+        <a href="#five" onclick="bugAdd();" class="w3-btn w3-black"> NO </a>   <!--added NO button and stomach bug function-->
+	<footer class="w3-bottom w3-container w3-flat-carrot">	<!-- added footer block on page four-->
+        <p>DIY!</p>
+	</footer>
+</div>	<!-- /content -->
+									<!-- End of question page four-->
+
+									<!-- Begining of question page five-->
+<div class="page" id="five">
+    <header class="w3-container w3-flat-carrot">
+        <h1>Question 5</h1>	<!--page five header-->
+    </header>
+    <div class="w3-container">
+        <p>Did others who ate the same meal as you also get sick?</p>	<!--added question 5-->
+        <a href="#six" onclick="poisonAdd();" class="w3-btn w3-black">Yes</a>	<!--added YES button and food poisoning function-->
+        <a href="#six" onclick="bugAdd();" class="w3-btn w3-black">No</a>	<!--added NO button and stomach bug function-->
+   <footer class="w3-bottom w3-container w3-flat-carrot">	<!-- added footer block on page five-->
+        <p>DIY!</p>
+	</footer>
+</div>	<!--/content-->
+									<!-- End of question page five-->
+
+									<!-- Begining of question page six-->
+<div class="page" id="six">
+    <header class="w3-container w3-flat-carrot">
+        <h1>Question 6</h1>	<!--page six header-->
+    </header>
+    <div class="w3-container">
+        <p>Is your primary symptom intense or frequent vomiting rather than just diarrhea?</p>	<!--added question 6-->
+        <a href="#seven" onclick="poisonAdd();" class="w3-btn w3-black">Yes</a>	<!--added YES button and food poisoning function-->
+        <a href="#seven" onclick="bugAdd();" class="w3-btn w3-black">No</a>	<!--added NO button and stomach bug function-->
+   <footer class="w3-bottom w3-container w3-flat-carrot">	<!-- added footer block on page six-->
+        <p>DIY!</p>
+	</footer>
+</div> <!--/content-->
+									<!-- End of question page six-->
+
+	<div class="page" id="seven">
+	<div class="w3-container w3-flat-carrot">
+		<h1> Find out your results </h1>
+	</div>
+	
+	<div id="content" class="w3-container">
+		<a href="#resultsPage" onclick="calculateResults();" class="w3-btn w3-black">Get Results</a>
+
+<div class="page" id="resultsPage">
+    <header class="w3-container w3-flat-carrot">
+        <h1>Results</h1>
+    </header>
+
+    <div class="w3-container">
+        <p id="results"></p> </div>
+	<footer class="w3-bottom w3-container w3-flat-carrot">	<!-- added footer block on page six-->
+        <p>DIY!</p>
+	</footer>
+</div>
+
+
+	
+<footer class="w3-bottom w3-container w3-flat-carrot" style="z-index: 10;">	<!--Main footer-->
+    <p>DIY!</p>
+</footer>
 	
 </body>
 </html>
